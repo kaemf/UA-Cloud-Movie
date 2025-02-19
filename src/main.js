@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
 import App from './App.vue';
+import 'dotenv/config';
 import router from './router';
 // import './assets/style.css';
 import axios from 'axios';
