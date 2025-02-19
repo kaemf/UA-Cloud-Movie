@@ -28,10 +28,13 @@
       }
     },
     mounted() {
-      axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=YOUR_API_KEY`)
-        .then(response => {
-          this.movies = response.data.results;
-        });
+      if (!localStorage.getItem('session')){
+        this.$router.push('/login');
+      }
+      // axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=YOUR_API_KEY`)
+      //   .then(response => {
+      //     this.movies = response.data.results;
+      //   });
     }
   };
   </script>

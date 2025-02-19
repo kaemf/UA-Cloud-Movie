@@ -1,54 +1,27 @@
 <template>
-    <footer class="footer">
-      <div class="footer-content">
-        <p>&copy; {{ currentYear }} Мой Сайт. Все права защищены.</p>
-        <nav>
-          <ul class="footer-links">
-            <li><router-link to="/privacy-policy">Политика конфиденциальности</router-link></li>
-            <li><router-link to="/terms-of-service">Условия использования</router-link></li>
-          </ul>
-        </nav>
+  <footer class="bg-dark text-light py-3">
+      <div class="container text-center">
+          <p class="mb-2">&copy; {{ currentYear }} Technical task "Movie on Vue" by Yaroslav Volkivskyi</p>
+          <nav>
+              <ul class="nav justify-content-center">
+                  <li class="nav-item">
+                      <router-link to="/privacy-policy" class="nav-link text-light">Политика конфиденциальности</router-link>
+                  </li>
+                  <li class="nav-item">
+                      <router-link to="/terms-of-service" class="nav-link text-light">Условия использования</router-link>
+                  </li>
+              </ul>
+          </nav>
       </div>
-    </footer>
-  </template>
-  
-  <script>
-  export default {
-    name: 'Footer',
-    data() {
+  </footer>
+</template>
+
+<script>
+export default {
+  data() {
       return {
-        currentYear: new Date().getFullYear(),
+          currentYear: new Date().getFullYear(),
       };
-    },
-  };
-  </script>
-  
-  <style scoped>
-  .footer {
-    padding: 20px;
-    background-color: #333;
-    color: white;
-    text-align: center;
-  }
-  
-  .footer-links {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .footer-links li {
-    margin: 0 15px;
-  }
-  
-  .footer-links a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  .footer-links a:hover {
-    text-decoration: underline;
-  }
-  </style>
-  
+  },
+};
+</script>

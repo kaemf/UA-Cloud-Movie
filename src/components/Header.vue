@@ -1,54 +1,48 @@
 <template>
-    <header class="header">
-      <div class="logo">
-        <h1>Мой Сайт</h1>
+  <header class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container">
+          <router-link to="/" class="navbar-brand">Movie App by Yaroslav</router-link>
+          <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+          >
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto">
+                  <li class="nav-item">
+                      <router-link to="/home" class="nav-link">Home</router-link>
+                  </li>
+                  <li class="nav-item" v-if="!isLoggedIn">
+                      <router-link to="/login" class="nav-link">Login</router-link>
+                  </li>
+
+                  <li class="nav-item" v-if="isLoggedIn">
+                      <router-link @click="logout" to="/" class="nav-link">Logout</router-link>
+                  </li>
+              </ul>
+          </div>
       </div>
-      <nav>
-        <ul class="nav-links">
-          <li><router-link to="/">Главная</router-link></li>
-          <li><router-link to="/login">Вход</router-link></li>
-        </ul>
-      </nav>
-    </header>
-  </template>
+  </header>
+</template>
   
   <script>
   export default {
     name: 'Header',
+
+    computed: {
+      isLoggedIn() {
+        return localStorage.getItem('session');
+      }
+    },
+
+    methods: {
+      logout() {
+        localStorage.removeItem('session');
+        this.$router.push('/login');
+      }
+    }
   };
   </script>
-  
-  <style scoped>
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-  }
-  
-  .logo h1 {
-    margin: 0;
-  }
-  
-  .nav-links {
-    list-style: none;
-    padding: 0;
-    display: flex;
-  }
-  
-  .nav-links li {
-    margin-left: 20px;
-  }
-  
-  .nav-links a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  .nav-links a:hover {
-    text-decoration: underline;
-  }
-  </style>
-  

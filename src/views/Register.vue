@@ -20,6 +20,10 @@ export default {
   methods: {
     submitForm() {
       if (this.username && this.password) {
+        const users = JSON.parse(localStorage.getItem("users") || "[]");
+        users.push({ username: this.username, password: this.password });
+        localStorage.setItem("users", JSON.stringify(users));
+        localStorage.setItem("session", JSON.stringify({ active: true, username: this.username }));
         this.$router.push('/home');
       }
     }
