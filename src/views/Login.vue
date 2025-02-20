@@ -10,9 +10,9 @@
                     <input v-model="password" type="password" class="form-control" placeholder="Password" required />
                 </div>
                 <div class="text-center mt-3">
-                    <p>Нет аккаунта?</p>
-                    <router-link to="/register" class="btn btn-outline-secondary w-100">
-                        Зарегистрироваться
+                    <p>Don’t have an account?</p>
+                    <router-link to="/register" class="btn btn-outline-secondary w-100 mb-2">
+                        Go to Registration
                     </router-link>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Login</button>
@@ -27,7 +27,7 @@ export default {
         return {
             username: "",
             password: "",
-            users: JSON.parse(localStorage.getItem("users") || "[]"),
+            users: JSON.parse(localStorage.getItem("users") || "[]")
         };
     },
     methods: {
@@ -35,7 +35,9 @@ export default {
             const user = this.users.find((u) => u.username === this.username && u.password === this.password);
             if (user) {
                 localStorage.setItem("session", JSON.stringify({ active: true, username: this.username }));
-                this.$router.push("/home");
+                this.$router.push('/home').then(() => {
+                    location.reload();
+                });
             }
             else alert('Invalid username or password');
         },
